@@ -1,0 +1,10 @@
+/target/
+application.yml
+logs
+
+.idea
+*.iml
+*.log
+.project
+.classpath
+.settings

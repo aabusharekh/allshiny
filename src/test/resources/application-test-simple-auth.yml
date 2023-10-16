@@ -1,0 +1,12 @@
+spring:
+  session:
+    store-type: none
+  data:
+     redis:
+        repositories:
+           enabled: false
+proxy:
+  authentication: simple
+  users:
+  - name: demo
+    password: demo
