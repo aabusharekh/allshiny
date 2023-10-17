@@ -6,7 +6,7 @@
     <groupId>eu.openanalytics</groupId>
     <artifactId>allcontainerproxy</artifactId>
     <version>SR_2.0.0</version>
-    <name>AllContainerProxy</name>
+    <name>AllContainerProxy-19</name>
     <packaging>jar</packaging>
 
     <parent>
@@ -20,6 +20,10 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <version.arquillian_cube>1.18.2</version.arquillian_cube>
         <java.version>19</java.version>
+        <maven.compiler.source>19</maven.compiler.source>
+        <maven.compiler.target>19</maven.compiler.target>
+        <containerproxy.version>SR_2.0.0</containerproxy.version>
+        <resource.delimiter>&amp;</resource.delimiter>
     </properties>
 
     <distributionManagement>
@@ -36,14 +40,6 @@
     </distributionManagement>
 
     <repositories>
-        <!-- Maven queries repositories in the order that they are defined here.
-        Usually, the Maven Central repository is the last one in this order, because it's defined in the super POM.
-        This means that for all dependencies which are downloaded from Maven Central, the custom repositories are
-        queried first, which slows down the build a lot.
-        Therefore we add central as the first repository in this list.
-        This reduces the time to download dependencies on a fresh machine from ~20-30min to 1min
-        See: https://maven.apache.org/ref/3.6.3/maven-model-builder/super-pom.html for the origin of this configuration
-        -->
         <repository>
             <id>central</id>
             <name>Central Repository</name>
@@ -69,22 +65,6 @@
     </repositories>
 
     <dependencies>
-        <!--dependency>
-            <groupId>org.opensaml</groupId>
-            <artifactId>opensaml-core</artifactId>
-            <version>4.1.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.opensaml</groupId>
-            <artifactId>opensaml-saml-api</artifactId>
-            <version>4.1.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.opensaml</groupId>
-            <artifactId>opensaml-saml-impl</artifactId>
-            <version>4.1.1</version>
-        </dependency-->
-        
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
@@ -145,7 +125,6 @@
             <artifactId>junit-platform-launcher</artifactId>
             <scope>test</scope>
         </dependency>
-
         <!-- Additional Spring components -->
         <dependency>
             <groupId>org.springframework.ldap</groupId>
@@ -155,11 +134,6 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-ldap</artifactId>
         </dependency>
-        <!--dependency>
-                <groupId>org.springframework.security.oauth.boot</groupId>
-                <artifactId>spring-security-oauth2-autoconfigure</artifactId>
-                <version>2.6.8</version>
-        </dependency-->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-oauth2-client</artifactId>
@@ -176,10 +150,6 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -208,8 +178,6 @@
             <artifactId>logstash-logback-encoder</artifactId>
             <version>7.2</version>
         </dependency>
-
-
         <!-- Spring social security components -->
         <!-- Note: also includes an embedded datasource (H2) to remember social logins -->
         <dependency>
@@ -225,26 +193,6 @@
             <artifactId>spring-social-facebook</artifactId>
             <version>2.0.3.RELEASE</version>
         </dependency>
-        <!--dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-social-facebook</artifactId>
-            <version>1.5.22.RELEASE</version>
-        </dependency-->
-        <!--dependency>
-            <groupId>org.springframework.social</groupId>
-            <artifactId>spring-social-twitter</artifactId>
-            <version>1.1.2.RELEASE</version>
-        </dependency-->
-        <!--dependency>
-            <groupId>org.springframework.social</groupId>
-            <artifactId>spring-social-linkedin</artifactId>
-            <version>1.0.2.RELEASE</version>
-        </dependency-->
-        <!--dependency>
-            <groupId>org.springframework.social</groupId>
-            <artifactId>spring-social-github</artifactId>
-            <version>1.0.0.M4</version>
-        </dependency-->
         <dependency>
             <groupId>com.github.spring-social</groupId>
             <artifactId>spring-social-google</artifactId>
@@ -261,23 +209,16 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-saml2-service-provider</artifactId>
-            <version>6.1.4</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
-            <version>6.1.4</version>
-        </dependency>
-
-        <!--dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-saml2-service-provider</artifactId>
-        </dependency-->
+        </dependency>      
         <dependency>
             <!-- Dependency of SAML -> update to fix security issue -->
             <groupId>com.fasterxml.woodstox</groupId>
             <artifactId>woodstox-core</artifactId>
-            <version>5.4.0</version>
+            <version>6.5.1</version>          
         </dependency>
         <dependency>
             <!-- Dependency of SAML -> update to fix security issue -->
@@ -353,10 +294,7 @@
         </dependency>
 
         <!-- UI frameworks -->
-        <!--dependency>
-                <groupId>org.thymeleaf.extras</groupId>
-                <artifactId>thymeleaf-extras-springsecurity5</artifactId>
-        </dependency-->
+        
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap</artifactId>
@@ -415,7 +353,7 @@
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
         </dependency>
-
+        
         <!-- Recursive dependencies which are upgraded for security -->
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -449,18 +387,51 @@
             <artifactId>snakeyaml</artifactId>
             <version>2.2</version>
         </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>datatables</artifactId>
+            <version>1.12.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>datatables-buttons</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>datatables-responsive</artifactId>
+            <version>2.2.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>handlebars</artifactId>
+            <version>4.7.7</version>
+        </dependency>
         <!--dependency>
-         <groupId>javax.servlet</groupId>
-         <artifactId>javax.servlet-api</artifactId>
-         <version>3.1.0</version>
-         <type>jar</type>
+            <groupId>io.undertow</groupId>
+            <artifactId>undertow-core</artifactId>
+            <version>2.2.21.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>io.undertow</groupId>
+            <artifactId>undertow-servlet</artifactId>
+            <version>2.2.21.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>io.undertow</groupId>
+            <artifactId>undertow-websockets-jsr</artifactId>
+            <version>2.2.21.Final</version>
         </dependency-->
-        <!--dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-nop</artifactId>
-            <version>1.7.36</version>
-            <type>jar</type>
-        </dependency-->
+        <dependency>
+            <groupId>org.jboss.xnio</groupId>
+            <artifactId>xnio-nio</artifactId>
+            <version>3.8.8.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.xnio</groupId>
+            <artifactId>xnio-api</artifactId>
+            <version>3.8.8.Final</version>
+        </dependency>			
     </dependencies>
 
     <dependencyManagement>
@@ -521,30 +492,19 @@
     </dependencyManagement>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>static/handlebars/node_modules/**</exclude>
+                    <exclude>static/handlebars/.gitignore</exclude>
+                    <exclude>static/handlebars/generate.sh</exclude>
+                    <exclude>static/handlebars/*.handlebars</exclude>
+                    <exclude>**/.gitignore</exclude>
+                </excludes>
+            </resource>
+        </resources>
         <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-
-                <executions>
-                    <execution>
-                        <id>repackage</id>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                        <configuration>
-                            <classifier>exec</classifier>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>build-info</id>
-                        <goals>
-                            <goal>build-info</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -560,66 +520,225 @@
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
-
-            <!--plugin>
-                <groupId>com.mycila.maven-license-plugin</groupId>
-                <artifactId>maven-license-plugin</artifactId>
-                <version>1.9.0</version>
-
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
                 <executions>
-                     <execution> <id>generate-copyright-headers</id> <phase>process-sources</phase>
-                    <goals> <goal>format</goal> </goals> </execution> >
                     <execution>
-                        <id>check-copyright-headers</id>
-                        <phase>package</phase>
+                        <id>repackage</id>
                         <goals>
-                            <goal>check</goal>
+                            <goal>repackage</goal>
                         </goals>
+                        <configuration>
+                            <classifier>exec</classifier>
+                            <mainClass>eu.openanalytics.containerproxy.ContainerProxyApplication</mainClass>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>build-info</id>
+                        <goals>
+                            <goal>build-info</goal>
+                        </goals>
+                        <configuration>
+                            <additionalProperties>
+                                <containerProxyVersion>${containerproxy.version}</containerProxyVersion>
+                            </additionalProperties>
+                        </configuration>
                     </execution>
                 </executions>
-
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>rpm-maven-plugin</artifactId>
+                <version>2.1.5</version>
+                <!--
+                <executions>
+                <execution>
+                        <id>generate-rpm</id>
+                        <goals>
+                               <goal>attached-rpm</goal>
+                        </goals>
+                </execution>
+        </executions>
+                -->
                 <configuration>
-                    <header>LICENSE_HEADER</header>
-                    <aggregate>true</aggregate>
-                    <strictCheck>true</strictCheck>
-                    <excludes>
-                        <exclude>**/*.properties</exclude>
-                        <exclude>**/*.yml</exclude>
-                        <exclude>**/*.json</exclude>
-                        <exclude>**/*.raml</exclude>
-                        <exclude>**/*.sh</exclude>
-                        <exclude>**/*.xml</exclude>
-                        <exclude>LICENSE</exclude>
-                        <exclude>LICENSE_HEADER</exclude>
-                        <exclude>README.md</exclude>
-                        <exclude>.gitignore</exclude>
-                    </excludes>
+                    <license>(c) Copyright Open Analytics NV, 2016-2020 - Apache License 2.0</license>
+                    <release>1.el7</release>
+                    <group>Development/Tools</group>
+                    <packager>Open Analytics</packager>
+                    <defineStatements>
+                        <defineStatement>_unpackaged_files_terminate_build 0</defineStatement>
+                    </defineStatements>
+                    <mappings>
+                        <mapping>
+                            <directory>/opt/shinyproxy</directory>
+                            <filemode>755</filemode>
+                            <username>shinyproxy</username>
+                            <groupname>shinyproxy</groupname>
+                        </mapping>
+                        <mapping>
+                            <directory>/opt/shinyproxy</directory>
+                            <filemode>755</filemode>
+                            <username>shinyproxy</username>
+                            <groupname>shinyproxy</groupname>
+                            <artifact />
+                        </mapping>
+                        <mapping>
+                            <directory>/opt/shinyproxy</directory>
+                            <sources>
+                                <softlinkSource>
+                                    <destination>shinyproxy.jar</destination>
+                                    <location>shinyproxy-${project.version}.jar</location>
+                                </softlinkSource>
+                            </sources>
+                        </mapping>
+                        <mapping>
+                            <directory>/opt/shinyproxy</directory>
+                            <filemode>755</filemode>
+                            <username>shinyproxy</username>
+                            <groupname>shinyproxy</groupname>
+                            <sources>
+                                <source>
+                                    <location>src/deb/shinyproxy.service</location>
+                                </source>
+                                <source>
+                                    <location>src/deb/shinyproxy.conf</location>
+                                </source>
+                                <source>
+                                    <location>src/main/resources/application-demo.yml</location>
+                                </source>
+                            </sources>
+                        </mapping>
+                        <mapping>
+                            <directory>/etc/shinyproxy</directory>
+                            <filemode>755</filemode>
+                            <username>shinyproxy</username>
+                            <groupname>shinyproxy</groupname>
+                        </mapping>
+                    </mappings>
+                    <requires>
+                        <require>java</require>
+                    </requires>
+                    <preinstallScriptlet>
+                        <scriptFile>src/deb/control/preinst</scriptFile>
+                        <fileEncoding>utf-8</fileEncoding>
+                    </preinstallScriptlet>
+                    <postinstallScriptlet>
+                        <scriptFile>src/deb/control/postinst</scriptFile>
+                        <fileEncoding>utf-8</fileEncoding>
+                    </postinstallScriptlet>
+                    <preremoveScriptlet>
+                        <scriptFile>src/deb/control/prerm</scriptFile>
+                        <fileEncoding>utf-8</fileEncoding>
+                    </preremoveScriptlet>
+                    <postremoveScriptlet>
+                        <scriptFile>src/deb/control/postrm</scriptFile>
+                        <fileEncoding>utf-8</fileEncoding>
+                    </postremoveScriptlet>
                 </configuration>
-            </plugin-->
+            </plugin>
 
+            <plugin>
+                <artifactId>jdeb</artifactId>
+                <groupId>org.vafer</groupId>
+                <version>1.5</version>
+                <configuration>
+                    <verbose>true</verbose>
+                    <controlDir>${basedir}/src/deb/control</controlDir>
+                    <dataSet>
+                        <data>
+                            <src>${project.build.directory}/${project.build.finalName}.jar</src>
+                            <type>file</type>
+                            <mapper>
+                                <type>perm</type>
+                                <prefix>/opt/${project.artifactId}</prefix>
+                                <user>shinyproxy</user>
+                                <group>shinyproxy</group>
+                            </mapper>
+                        </data>
+                        <data>
+                            <type>link</type>
+                            <symlink>true</symlink>
+                            <linkName>/opt/${project.artifactId}/${project.artifactId}.jar</linkName>
+                            <linkTarget>/opt/${project.artifactId}/${project.build.finalName}.jar</linkTarget>
+                        </data>
+                        <data>
+                            <src>${basedir}/src/deb/shinyproxy.service</src>
+                            <type>file</type>
+                            <mapper>
+                                <type>perm</type>
+                                <prefix>/opt/${project.artifactId}</prefix>
+                                <user>shinyproxy</user>
+                                <group>shinyproxy</group>
+                            </mapper>
+                        </data>
+                        <data>
+                            <src>${basedir}/src/deb/shinyproxy.conf</src>
+                            <type>file</type>
+                            <mapper>
+                                <type>perm</type>
+                                <prefix>/opt/${project.artifactId}</prefix>
+                                <user>shinyproxy</user>
+                                <group>shinyproxy</group>
+                            </mapper>
+                        </data>
+                        <data>
+                            <src>${basedir}/src/main/resources/application-demo.yml</src>
+                            <type>file</type>
+                            <mapper>
+                                <type>perm</type>
+                                <prefix>/opt/${project.artifactId}</prefix>
+                                <user>shinyproxy</user>
+                                <group>shinyproxy</group>
+                            </mapper>
+                        </data>
+                        <data>
+                            <type>template</type>
+                            <paths>
+                                <path>etc/${project.artifactId}</path>
+                            </paths>
+                            <mapper>
+                                <type>perm</type>
+                                <user>shinyproxy</user>
+                                <group>shinyproxy</group>
+                            </mapper>
+                        </data>
+                    </dataSet>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>net.nicoulaj.maven.plugins</groupId>
                 <artifactId>checksum-maven-plugin</artifactId>
-                <version>1.5</version>
-
+                <version>1.9</version>
                 <executions>
                     <execution>
-                        <id>attach-artifact-checksums</id>
                         <goals>
-                            <goal>artifacts</goal>
+                            <goal>files</goal>
                         </goals>
                     </execution>
                 </executions>
-
                 <configuration>
-                    <attachChecksums>true</attachChecksums>
+                    <fileSets>
+                        <fileSet>
+                            <directory>${project.build.directory}</directory>
+                            <includes>
+                                <include>*.jar</include>
+                                <include>*.pom</include>
+                            </includes>
+                            <excludes>
+                                <exclude>*.sha256</exclude>
+                                <exclude>*.md5</exclude>
+                            </excludes>
+                        </fileSet>
+                    </fileSets>
                     <algorithms>
                         <algorithm>SHA-256</algorithm>
                         <algorithm>MD5</algorithm>
                     </algorithms>
+                    <attachChecksums>true</attachChecksums>
+                    <csvSummary>false</csvSummary>
                 </configuration>
             </plugin>
-            
         </plugins>
     </build>
 
