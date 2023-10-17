@@ -381,12 +381,7 @@
             <artifactId>lang-tag</artifactId>
             <version>1.7</version>
         </dependency>
-        <dependency>
-            <!-- Dependency of Spring -->
-            <groupId>org.yaml</groupId>
-            <artifactId>snakeyaml</artifactId>
-            <version>2.2</version>
-        </dependency>
+        
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>datatables</artifactId>
