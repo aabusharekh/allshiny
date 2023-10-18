@@ -1,0 +1,1 @@
+	at eu.openanalytics.containerproxy.service.hearbeat.ActiveProxiesService$1.run(ActiveProxiesService.java:76) ~[classes/:na]
