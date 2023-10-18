@@ -90,7 +90,7 @@ import static eu.openanalytics.containerproxy.service.ProxyService.PROPERTY_STOP
 @SpringBootApplication(exclude = {UserDetailsServiceAutoConfiguration.class})
 @ComponentScan("eu.openanalytics")
 public class ContainerProxyApplication {
-	public static final String CONFIG_FILENAME = "application.yml";
+	public static final String CONFIG_FILENAME = "/data/application.yml";
 	public static final String CONFIG_DEMO_PROFILE = "demo";
 
 	@Autowired
