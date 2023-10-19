@@ -13,7 +13,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./shinyproxy-logs/server:/log
       - ./shinyproxy-logs/container:/container-logs
-      - ./shinyproxy/application.yml:/opt/shinyproxy/application.yml
+      - ./shinyproxy/application.yaml:/opt/shinyproxy/application.yaml
   euler:
     image: euler
     container_name: dnv_euler

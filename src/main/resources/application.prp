@@ -1,2 +1,0 @@
-spring.application.name=ShinyProxy
-logging.level.root=TRACE

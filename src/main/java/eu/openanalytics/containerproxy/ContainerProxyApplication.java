@@ -90,7 +90,7 @@ import static eu.openanalytics.containerproxy.service.ProxyService.PROPERTY_STOP
 @SpringBootApplication(exclude = {UserDetailsServiceAutoConfiguration.class})
 @ComponentScan("eu.openanalytics")
 public class ContainerProxyApplication {
-	public static final String CONFIG_FILENAME = "application.yml";
+	public static final String CONFIG_FILENAME = "application.yaml";
 	public static final String CONFIG_DEMO_PROFILE = "demo";
 
 	@Autowired
@@ -311,10 +311,10 @@ public class ContainerProxyApplication {
 	public static Properties getDefaultProperties() {
 		Properties properties = new Properties();
 
-		// use in-memory session storage by default. Can be overwritten in application.yml
+		// use in-memory session storage by default. Can be overwritten in application.yaml
 		properties.put("spring.session.store-type", "none");
 		// required for proper working of the SP_USER_INITIATED_LOGOUT session attribute in the UserService
-		properties.put("spring.session.redis.flush-mode", "IMMEDIATE");
+		//properties.put("spring.session.redis.flush-mode", "IMMEDIATE");
 
 		// disable multi-part handling by Spring. We don't need this anywhere in the application.
 		// When enabled this will cause problems when proxying file-uploads to the shiny apps.
@@ -331,15 +331,15 @@ public class ContainerProxyApplication {
 
 		// disable all supported exporters by default
 		// Note: if we upgrade to Spring Boot 2.4.0 we can use properties.put("management.metrics.export.defaults.enabled", "false");
-		properties.put("management.metrics.export.prometheus.enabled", "false");
-		properties.put("management.metrics.export.influx.enabled", "false");
+		//properties.put("management.metrics.export.prometheus.enabled", "false");
+		//properties.put("management.metrics.export.influx.enabled", "false");
 		// set actuator to port 9090 (can be overwritten)
-		properties.put("management.server.port", "9090");
+		//properties.put("management.server.port", "9090");
 		// enable prometheus endpoint by default (but not the exporter)
-		properties.put("management.endpoint.prometheus.enabled", "true");
-		properties.put("management.endpoint.recyclable.enabled", "true");
+		//properties.put("management.endpoint.prometheus.enabled", "true");
+		//properties.put("management.endpoint.recyclable.enabled", "true");
 		// include prometheus and health endpoint in exposure
-		properties.put("management.endpoints.web.exposure.include", "health,prometheus,recyclable");
+		//properties.put("management.endpoints.web.exposure.include", "health,prometheus,recyclable");
 
 		// ====================
 
@@ -347,21 +347,21 @@ public class ContainerProxyApplication {
 		// ====================
 
 		// enable redisSession check for the readiness probe
-		properties.put("management.endpoint.health.group.readiness.include", "readinessProbe,redisSession,appRecoveryReadyIndicator");
+		//properties.put("management.endpoint.health.group.readiness.include", "readiness,redisSession,appRecoveryReadyIndicator");
 		// disable ldap health endpoint
-		properties.put("management.health.ldap.enabled", false);
+		//properties.put("management.health.ldap.enabled", false);
 		// disable default redis health endpoint since it's managed by redisSession
-		properties.put("management.health.redis.enabled", "false");
+		//properties.put("management.health.redis.enabled", "false");
 		// enable Kubernetes probes
-		properties.put("management.endpoint.health.probes.enabled", true);
+		//properties.put("management.endpoint.health.probes.enabled", true);
 
 		// ====================
 
 		properties.put("spring.config.use-legacy-processing", true);
 
 		// disable openapi docs and swagger ui
-		properties.put("springdoc.api-docs.enabled", false);
-		properties.put("springdoc.swagger-ui.enabled", false);
+		//properties.put("springdoc.api-docs.enabled", false);
+		//properties.put("springdoc.swagger-ui.enabled", false);
 
 		return properties;
 	}

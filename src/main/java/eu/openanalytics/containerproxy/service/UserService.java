@@ -68,8 +68,6 @@ public class UserService {
 	private Environment environment;
 
 	@Autowired
-	@Lazy
-	// Note: lazy needed to work around early initialization conflict 
 	private IAuthenticationBackend authBackend;
 	
 	@Autowired

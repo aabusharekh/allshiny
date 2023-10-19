@@ -31,8 +31,8 @@ import eu.openanalytics.containerproxy.spec.IProxySpecProvider;
 
 import javax.annotation.PostConstruct;
 
-@Component
-@ConfigurationProperties(prefix = "proxy")
+//@Component
+//@ConfigurationProperties(prefix = "proxy")
 public class DefaultSpecProvider implements IProxySpecProvider {
 	
 	private List<ProxySpec> specs = new ArrayList<>();

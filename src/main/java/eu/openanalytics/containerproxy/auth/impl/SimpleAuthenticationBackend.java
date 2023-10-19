@@ -33,17 +33,20 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer.AuthorizedUrl;
 
 import eu.openanalytics.containerproxy.auth.IAuthenticationBackend;
+import javax.inject.Inject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * Simple authentication method where user/password combinations are
- * provided by the application.yml file.
+ * provided by the application.yaml file.
  */
+@Component
 public class SimpleAuthenticationBackend implements IAuthenticationBackend {
 
 	public static final String NAME = "simple";
 	
-	@Autowired
+	@Inject
 	private Environment environment;
 	
 	@Override

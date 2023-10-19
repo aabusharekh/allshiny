@@ -764,7 +764,7 @@ public class TestIntegrationOnKube extends KubernetesTestBase {
             Secret secret = getSingleSecret(namespace);
             Assertions.assertEquals(namespace, secret.getMetadata().getNamespace());
             Assertions.assertEquals("manifests-secret", secret.getMetadata().getName());
-            // secret should have the value from the application.yml
+            // secret should have the value from the application.yaml
             Assertions.assertEquals("cGFzc3dvcmQ=", secret.getData().get("password"));
 
             proxyService.stopProxy(null, proxy, true).run();
@@ -812,7 +812,7 @@ public class TestIntegrationOnKube extends KubernetesTestBase {
             Secret secret = getSingleSecret(namespace);
             Assertions.assertEquals(namespace, secret.getMetadata().getNamespace());
             Assertions.assertEquals("manifests-secret", secret.getMetadata().getName());
-            // secret should have the value from the secret we created above not from the application.yml
+            // secret should have the value from the secret we created above not from the application.yaml
             Assertions.assertEquals("b2xkX3Bhc3N3b3Jk", secret.getData().get("password"));
 
             proxyService.stopProxy(null, proxy, true).run();
@@ -853,7 +853,7 @@ public class TestIntegrationOnKube extends KubernetesTestBase {
             Secret secret = getSingleSecret(namespace);
             Assertions.assertEquals(namespace, secret.getMetadata().getNamespace());
             Assertions.assertEquals("manifests-secret", secret.getMetadata().getName());
-            // secret should have the value from the application.yml
+            // secret should have the value from the application.yaml
             Assertions.assertEquals("cGFzc3dvcmQ=", secret.getData().get("password"));
 
             proxyService.stopProxy(null, proxy, true).run();
@@ -904,7 +904,7 @@ public class TestIntegrationOnKube extends KubernetesTestBase {
             Secret secret = getSingleSecret(namespace);
             Assertions.assertEquals(namespace, secret.getMetadata().getNamespace());
             Assertions.assertEquals("manifests-secret", secret.getMetadata().getName());
-            // secret should have the value from the application.yml not from the secret we created above
+            // secret should have the value from the application.yaml not from the secret we created above
             Assertions.assertEquals("cGFzc3dvcmQ=", secret.getData().get("password"));
             // since the secret should not have been replaced, the creation timestamp must be equal
             Assertions.assertEquals(originalCreationTimestamp, secret.getMetadata().getCreationTimestamp());
@@ -990,7 +990,7 @@ public class TestIntegrationOnKube extends KubernetesTestBase {
             Secret secret = getSingleSecret(namespace);
             Assertions.assertEquals(namespace, secret.getMetadata().getNamespace());
             Assertions.assertEquals("manifests-secret", secret.getMetadata().getName());
-            // secret should have the value from the application.yml
+            // secret should have the value from the application.yaml
             Assertions.assertEquals("cGFzc3dvcmQ=", secret.getData().get("password"));
 
             proxyService.stopProxy(null, proxy, true).run();
@@ -1041,7 +1041,7 @@ public class TestIntegrationOnKube extends KubernetesTestBase {
             Secret secret = getSingleSecret(namespace);
             Assertions.assertEquals(namespace, secret.getMetadata().getNamespace());
             Assertions.assertEquals("manifests-secret", secret.getMetadata().getName());
-            // secret should have the value from the application.yml not from the secret we created above
+            // secret should have the value from the application.yaml not from the secret we created above
             Assertions.assertEquals("cGFzc3dvcmQ=", secret.getData().get("password"));
             // since the secret was replaced, the creation timestamp must be different
             Assertions.assertNotEquals(originalCreationTimestamp, secret.getMetadata().getCreationTimestamp());

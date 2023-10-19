@@ -21,7 +21,6 @@
 package eu.openanalytics.containerproxy.spec.expression;
 
 import eu.openanalytics.containerproxy.auth.impl.OpenIDAuthenticationBackend;
-import eu.openanalytics.containerproxy.auth.impl.saml.ResponseAuthenticationConverter;
 import eu.openanalytics.containerproxy.model.runtime.Proxy;
 import eu.openanalytics.containerproxy.model.spec.ContainerSpec;
 import eu.openanalytics.containerproxy.model.spec.ProxySpec;
@@ -30,9 +29,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Value;
-import org.keycloak.KeycloakPrincipal;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.ldap.userdetails.LdapUserDetails;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -49,9 +46,6 @@ public class SpecExpressionContext {
     ProxySpec proxySpec;
     Proxy proxy;
     OpenIDAuthenticationBackend.CustomNameOidcUser oidcUser;
-    KeycloakPrincipal keycloakUser;
-    ResponseAuthenticationConverter.Saml2AuthenticatedPrincipal samlCredential;
-    LdapUserDetails ldapUser;
     List<String> groups;
     String userId;
 
@@ -127,12 +121,6 @@ public class SpecExpressionContext {
                 builder.proxy = (Proxy) o;
             } else if (o instanceof OpenIDAuthenticationBackend.CustomNameOidcUser) {
                 builder.oidcUser = (OpenIDAuthenticationBackend.CustomNameOidcUser) o;
-            } else if (o instanceof KeycloakPrincipal) {
-                builder.keycloakUser = (KeycloakPrincipal) o;
-            } else if (o instanceof ResponseAuthenticationConverter.Saml2AuthenticatedPrincipal) {
-                builder.samlCredential = (ResponseAuthenticationConverter.Saml2AuthenticatedPrincipal) o;
-            } else if (o instanceof LdapUserDetails) {
-                builder.ldapUser = (LdapUserDetails) o;
             }
             if (o instanceof Authentication) {
                 builder.groups = UserService.getGroups((Authentication) o);

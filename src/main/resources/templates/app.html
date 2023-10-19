@@ -41,7 +41,7 @@
 	<script th:src="@{${resourcePrefix} + '/handlebars/precompiled.js'}"></script>
 </head>
 <body id="appPage">
-	<div th:replace="fragments/navbar :: navbar"></div>
+	<div th:replace="~{fragments/navbar :: navbar}"></div>
 
     <div id="iframeinsert"></div>
     <div id="loading" class="loading">
@@ -153,7 +153,7 @@
 		</div>
     </div>
 
-	<div th:replace="fragments/modal :: modal"></div>
+	<div th:replace="~{fragments/modal :: modal}"></div>
 
 	<script type="text/javascript" th:inline="javascript">
 		$(window).on('load', function() {

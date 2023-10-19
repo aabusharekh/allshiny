@@ -32,7 +32,7 @@ import java.util.Map;
 public interface IAuthenticationBackend {
 
 	/**
-	 * Get the name for this authentication backend, as used in the application.yml file.
+	 * Get the name for this authentication backend, as used in the application.yaml file.
 	 */
 	public String getName();
 

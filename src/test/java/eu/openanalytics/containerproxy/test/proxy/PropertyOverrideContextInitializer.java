@@ -44,7 +44,7 @@ public class PropertyOverrideContextInitializer
         propertySources.addFirst(defaultProperties);
 
 		// remove any external, file-based property source
-		// we don't want any application.yml or application.properties to be loaded during the tests
+		// we don't want any application.yaml or application.properties to be loaded during the tests
         propertySources
                 .stream()
                 .map(PropertySource::getName)

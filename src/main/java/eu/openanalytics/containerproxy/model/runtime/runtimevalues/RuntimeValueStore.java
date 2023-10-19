@@ -60,7 +60,7 @@ public abstract class RuntimeValueStore {
     }
 
     /**
-     * Used in SpEL of application.yml
+     * Used in SpEL of application.yaml
      */
     public String getRuntimeValue(String keyAsEnvVar) {
         Objects.requireNonNull(keyAsEnvVar, "key may not be null");

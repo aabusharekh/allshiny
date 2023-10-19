@@ -115,9 +115,9 @@ public abstract class BaseController {
 			map.put("showNavbar", !Boolean.parseBoolean(environment.getProperty("proxy.hide-navbar")));
 		}
 
-		map.put("bootstrapCss", "/webjars/bootstrap/3.4.1/css/bootstrap.min.css");
-		map.put("bootstrapJs", "/webjars/bootstrap/3.4.1/js/bootstrap.min.js");
-		map.put("jqueryJs", "/webjars/jquery/3.6.1/jquery.min.js");
+		map.put("bootstrapCss", "/webjars/bootstrap/4.6.2/css/bootstrap.min.css");
+		map.put("bootstrapJs", "/webjars/bootstrap/4.6.2/js/bootstrap.min.js");
+		map.put("jqueryJs", "/webjars/jquery/3.7.1/jquery.min.js");
 		map.put("handlebars", "/webjars/handlebars/4.7.7/handlebars.runtime.min.js");
 
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

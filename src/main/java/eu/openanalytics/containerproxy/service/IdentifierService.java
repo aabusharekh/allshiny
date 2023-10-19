@@ -58,7 +58,7 @@ public class IdentifierService {
 
     /**
      * String that identifies this "instance" of ShinyProxy Configuration.
-     * This value is determined by the configuration (i.e. application.yml) of ShinyProxy.
+     * This value is determined by the configuration (i.e. application.yaml) of ShinyProxy.
      * It is not unique across multiple runs or multiple servers.
      * This value only changes when the configuration changes.
      */
@@ -115,7 +115,7 @@ public class IdentifierService {
         /**
          * We need a hash of some "canonical" version of the config file.
          * The hash should not change when e.g. comments are added to the file.
-         * Therefore we read the application.yml file into an Object and then
+         * Therefore we read the application.yaml file into an Object and then
          * dump it again into YAML. We also sort the keys of maps and properties so that
          * the order does not matter for the resulting hash.
          */

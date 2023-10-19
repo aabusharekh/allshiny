@@ -1,9 +1,5 @@
 proxy:
-  title: Open Analytics Shiny Proxy
-  logo-url: https://www.openanalytics.eu/shinyproxy/logo.png
-  landing-page: /
-  heartbeat-rate: 10000
-  heartbeat-timeout: 60000
+  title: ShinyProxy3
   port: 8080
   authentication: simple
   admin-groups: admins
@@ -15,20 +11,34 @@ proxy:
     password: password
   docker:
       internal-networking: true
-      container-network: dnv-net
+      #container-network: dnv-net
+  # change this route to your work directory, use absolute path
+  # work-directory: /Users/kassambara/Documents/shinyproxy-docker-compose-example
   specs:
   - id: 01_hello
     display-name: Hello Application
     description: Application which demonstrates the basics of a Shiny app
     container-cmd: ["R", "-e", "shinyproxy::run_01_hello()"]
     container-image: openanalytics/shinyproxy-demo
-    container-network: "${proxy.docker.container-network}"
+    #container-network: "${proxy.docker.container-network}"
+    # container-volumes: ["${proxy.work-directory}/apps:/apps"]
   - id: euler
     display-name: Euler's number
     container-cmd: ["R", "-e", "shiny::runApp('/root/euler')"]
     container-image: euler-docker
-    container-network: "${proxy.docker.container-network}"
-
+    #container-network: "${proxy.docker.container-network}"
+# management:
+#    influx:
+#        metrics:
+#            export:
+#                enabled: false
+management:
+    metrics:
+        export:
+            influx:
+                user-name: admin
+                password: admin
 logging:
+  level: DEBUG
   file:
     /log/shinyproxy.log
