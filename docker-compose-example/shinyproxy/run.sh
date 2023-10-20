@@ -1,2 +1,2 @@
-cp ~/code/shiny/shinyproxy/target/shinyproxy-sp_4.0.0-exec.jar .
+cp /home/ubuntu/code/shiny/all/target/allcontainerproxy-SR_2.0.0-exec.jar ./shinyproxy.jar
 docker build -t shinyproxy .

@@ -3,6 +3,10 @@ proxy:
   port: 8080
   authentication: simple
   admin-groups: admins
+  usage-stats-password: admin
+  usage-stats-username: admin
+  usage-stats-url: http://127.0.0.1:8086/write?db=shinyproxy_usagestats
+  store-mode: None
   users:
   - name: jack
     password: password
@@ -10,8 +14,9 @@ proxy:
   - name: jeff
     password: password
   docker:
+      url: http://127.0.0.1:2375
       internal-networking: true
-      #container-network: dnv-net
+      
   # change this route to your work directory, use absolute path
   # work-directory: /Users/kassambara/Documents/shinyproxy-docker-compose-example
   specs:
@@ -24,9 +29,9 @@ proxy:
     # container-volumes: ["${proxy.work-directory}/apps:/apps"]
   - id: euler
     display-name: Euler's number
-    container-cmd: ["R", "-e", "shiny::runApp('/root/euler')"]
-    container-image: euler-docker
-    #container-network: "${proxy.docker.container-network}"
+    #container-cmd: ["R", "-e", "shiny::runApp('/root/euler')"]
+    container-image: euler:latest
+    
 # management:
 #    influx:
 #        metrics:

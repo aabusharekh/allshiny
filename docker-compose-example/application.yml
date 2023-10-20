@@ -1,13 +1,8 @@
 proxy:
   title: ShinyProxy10
   port: 8080
-  #usage-stats-password: admin
-  #usage-stats-username: admin
-  #usage-stats-url: http://influxdb:8086/write?db=shinyproxy_usagestats
-  store-mode: None
   authentication: simple
   admin-groups: admins
-
   users:
   - name: jack
     password: password
@@ -36,8 +31,3 @@ proxy:
 logging:
   file:
     /log/shinyproxy.log
-#spring:
-#  session:
-#    store-type: redis
-#  redis:
-#    host: redis
