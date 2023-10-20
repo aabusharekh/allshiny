@@ -40,12 +40,8 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.springdoc.core.GroupedOpenApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.actuate.health.Health;
-import org.springframework.boot.actuate.health.HealthIndicator;
-import org.springframework.boot.actuate.data.redis.RedisHealthIndicator;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
 import org.springframework.boot.web.embedded.undertow.UndertowServletWebServerFactory;
 import org.springframework.boot.web.server.PortInUseException;
@@ -53,15 +49,10 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
-import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
-import org.springframework.session.FindByIndexNameSessionRepository;
-import org.springframework.session.Session;
-import org.springframework.session.security.SpringSessionBackedSessionRegistry;
 import org.springframework.session.web.http.DefaultCookieSerializer;
 import org.springframework.web.filter.FormContentFilter;
 
@@ -75,7 +66,6 @@ import java.security.Security;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.Executor;
@@ -252,37 +242,9 @@ public class ContainerProxyApplication {
 		return new JSR353Module();
 	}
 
-	@Bean
-	public HealthIndicator redisSessionHealthIndicator(RedisConnectionFactory rdeRedisConnectionFactory) {
-		if (Objects.equals(environment.getProperty("spring.session.store-type"), "redis")) {
-			// if we are using redis for session -> use a proper health check for redis
-			return new RedisHealthIndicator(rdeRedisConnectionFactory);
-		} else {
-			// not using redis for session -> just pretend it's always online
-			return new HealthIndicator() {
+	
 
-				@Override
-				public Health getHealth(boolean includeDetails) {
-					return Health.up().build();
-				}
-
-				@Override
-				public Health health() {
-					return Health.up().build();
-				}
-			};
-		}
-	}
-
-	/**
-	 * This Bean ensures that User Session are properly expired when using Redis for session storage.
-	 */
-	@Bean
-	@ConditionalOnProperty(name = "spring.session.store-type", havingValue = "redis")
-	public <S extends Session> SessionRegistry sessionRegistry(FindByIndexNameSessionRepository<S> sessionRepository) {
-		return new SpringSessionBackedSessionRegistry<>(sessionRepository);
-	}
-
+	
 	@Bean
 	public HttpSessionEventPublisher httpSessionEventPublisher() {
 		return new HttpSessionEventPublisher();

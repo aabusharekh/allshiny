@@ -14,7 +14,7 @@ proxy:
   - name: jeff
     password: password
   docker:
-      url: http://127.0.0.1:2375
+      #url: http://127.0.0.1:2375
       internal-networking: true
       
   # change this route to your work directory, use absolute path

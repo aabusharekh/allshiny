@@ -32,8 +32,8 @@ public class BaseController {
 
 	protected void prepareMap(ModelMap map) {
 		map.put("title", environment.getProperty("proxy.title", "ShinyProxy"));
-		map.put("bootstrapCss", "/webjars/bootstrap/4.6.2/css/bootstrap.min.css");
-		map.put("bootstrapJs", "/webjars/bootstrap/4.6.2/js/bootstrap.min.js");
+		map.put("bootstrapCss", "/webjars/bootstrap/5.3.2/css/bootstrap.min.css");
+		map.put("bootstrapJs", "/webjars/bootstrap/5.3.2/js/bootstrap.min.js");
 		map.put("jqueryJs", "/webjars/jquery/3.7.1/jquery.min.js");
 		map.put("fontAwesomeCss", "/webjars/fontawesome/4.7.0/css/font-awesome.min.css");
 		map.put("bootstrapSocialCss", "/webjars/bootstrap-social/5.1.1/bootstrap-social.css");

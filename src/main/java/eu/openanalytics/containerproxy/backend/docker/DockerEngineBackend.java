@@ -159,7 +159,7 @@ public class DockerEngineBackend extends AbstractDockerBackend {
 		String targetProtocol;
 		String targetHostName;
 		String targetPort;
-
+                String targetIPAddress = null;
 		if (isUseInternalNetwork()) {
 			targetProtocol = getProperty(PROPERTY_CONTAINER_PROTOCOL, DEFAULT_TARGET_PROTOCOL);
 			
@@ -167,7 +167,7 @@ public class DockerEngineBackend extends AbstractDockerBackend {
 			// See comments on https://github.com/docker/for-win/issues/1009
 			ContainerInfo info = dockerClient.inspectContainer(container.getId());
 			targetHostName = info.config().hostname();
-
+                        targetIPAddress = info.networkSettings().ipAddress();
 			targetPort = String.valueOf(portMapping.getPort());
 		} else {
 			URL hostURL = new URL(getProperty(PROPERTY_URL, DEFAULT_TARGET_URL));
@@ -175,6 +175,7 @@ public class DockerEngineBackend extends AbstractDockerBackend {
 			targetHostName = hostURL.getHost();
 			targetPort = String.valueOf(hostPort);
 		}
+                targetHostName = targetIPAddress == null ? targetHostName : targetIPAddress;
 		return new URI(String.format("%s://%s:%s%s", targetProtocol, targetHostName, targetPort, portMapping.getTargetPath()));
 	}
 	
