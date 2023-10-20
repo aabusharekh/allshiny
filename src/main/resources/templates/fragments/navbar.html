@@ -33,30 +33,33 @@
                         <img class="navbar-brand" th:src="${logo}" />
                         <a class="navbar-brand" th:href="@{/}" th:text="${title}"></a>
                     </div>
-                    <div class="navbar-form navbar-right">
-                        <a role="button" class="btn btn-primary btn-sm" id="switchInstancesModal-btn"
-                           th:if="${page == 'app' && appMaxInstances.get(appName) != 1}" >Switch instance</a>
+                    
+                    <ul class="nav navbar navbar-right">
+                        <li><a role="button" class="btn btn-primary btn-sm" id="switchInstancesModal-btn"
+                           th:if="${page == 'app' && appMaxInstances.get(appName) != 1}" >Switch instance</a></li>
 
-                        <a role="button" class="btn btn-primary btn-sm btn-restart-app" onclick="Shiny.instances.eventHandlers.showAppDetails();"
-                           th:if="${page == 'app' && appMaxInstances.get(appName) == 1}" >App details</a>
+                        <li><a role="button" class="btn btn-primary btn-sm btn-restart-app" onclick="Shiny.instances.eventHandlers.showAppDetails();"
+                           th:if="${page == 'app' && appMaxInstances.get(appName) == 1}" >App details</a></li>
 
-                        <a role="button" class="btn btn-primary btn-sm btn-restart-app" onclick="Shiny.instances.eventHandlers.onRestartInstance();"
-                           th:if="${page == 'app' && appMaxInstances.get(appName) == 1}" >Restart app</a>
+                        <li><a role="button" class="btn btn-primary btn-sm btn-restart-app" onclick="Shiny.instances.eventHandlers.onRestartInstance();"
+                           th:if="${page == 'app' && appMaxInstances.get(appName) == 1}" >Restart app</a></li>
 
-                        <a role="button" class="btn btn-primary btn-sm" onclick="Shiny.instances.eventHandlers.onDeleteInstance();"
-                           th:if="${page == 'app' && appMaxInstances.get(appName) == 1}" >Stop app</a>
+                        <li><a role="button" class="btn btn-primary btn-sm" onclick="Shiny.instances.eventHandlers.onDeleteInstance();"
+                           th:if="${page == 'app' && appMaxInstances.get(appName) == 1}" >Stop app</a></li>
 
-                        <a role="button" class="btn btn-primary btn-sm" onclick="Shiny.instances.eventHandlers.onPauseApp();"
-                           th:if="${page == 'app' && pauseSupported && appMaxInstances.get(appName) == 1}" >Pause app</a>
+                        <li><a role="button" class="btn btn-primary btn-sm" onclick="Shiny.instances.eventHandlers.onPauseApp();"
+                           th:if="${page == 'app' && pauseSupported && appMaxInstances.get(appName) == 1}" >Pause app</a></li>
 
-                        <a role="button" class="btn btn-primary btn-sm" id="myAppsModal-btn"
-                           th:if="${page == 'index' && myAppsMode == 'Modal'}" >My apps</a>
+                        <li><a role="button" class="btn btn-primary btn-sm" id="myAppsModal-btn"
+                           th:if="${page == 'index' && myAppsMode == 'Modal'}" >My apps</a></li>
 
-                        <a role="button" class="btn btn-primary btn-sm" th:if="${isSupportEnabled}"
-                           data-toggle="modal" data-target="#reportIssueModal">Report Issue</a>
-                        <a role="button" class="btn btn-primary btn-sm" th:href="@{/admin}" th:if="${isAdmin}">Admin</a>
-                        <a role="button" class="btn btn-primary btn-sm" th:href="@{${logoutUrl}}" th:if="${isLoggedIn}">Sign Out</a>
-                    </div>
+                        <li><a role="button" class="btn btn-primary btn-sm" th:if="${isSupportEnabled}"
+                           data-toggle="modal" data-target="#reportIssueModal">Report Issue</a></li>
+                        <li><a role="button" class="btn btn-primary btn-sm" th:href="@{/admin}" th:if="${isAdmin}">Admin</a></li>
+                        <li><a role="button" class="btn btn-primary btn-sm" th:href="@{${logoutUrl}}" th:if="${isLoggedIn}">Sign Out</a></li>
+                    </ul>
+                    
+                    
                     <div class="navbar-right" sec:authorize="isAuthenticated()">
                         <span class="navbar-text">
                             <span class="glyphicon glyphicon-user"></span>
@@ -69,7 +72,7 @@
                 // fix padding of body as soon as navbar is rendered
                 let navbarHeight = $('.navbar-height').height();
                 if (navbarHeight !== undefined) {
-                    $('body').css('padding-top', navbarHeight + 'px');
+                    $('body').css('padding-top', '0px');
                 }
             </script>
             <div class="modal fade" id="reportIssueModal" role="dialog">

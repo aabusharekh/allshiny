@@ -69,7 +69,7 @@ Shiny.ui = {
         }
         let height = $(window).height() - navbarHeight;
         $('#shinyframe').css('height', height + 'px');
-        $('body').css('padding-top', navbarHeight + 'px');
+        $('body').css('padding-top', 0 + 'px');
     },
 
     updateLoadingTxt: function () {
