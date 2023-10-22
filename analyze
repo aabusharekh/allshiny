@@ -1,0 +1,117 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m-----------------< [0;36meu.openanalytics:allcontainerproxy[0;1m >-----------------[m
+[[1;34mINFO[m] [1mBuilding AllContainerProxy-19 SR_2.0.0[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m>>> [0;32mmaven-dependency-plugin:3.5.0:analyze[m [1m(default-cli)[0;1m > [0;1mtest-compile[m @ [36mallcontainerproxy[0;1m >>>[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mspring-boot-maven-plugin:3.1.5:build-info[m [1m(build-info)[m @ [36mallcontainerproxy[0;1m ---[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:3.3.1:resources[m [1m(default-resources)[m @ [36mallcontainerproxy[0;1m ---[m
+[[1;34mINFO[m] Copying 27 resources from src/main/resources to target/classes
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.11.0:compile[m [1m(default-compile)[m @ [36mallcontainerproxy[0;1m ---[m
+[[1;34mINFO[m] Nothing to compile - all classes are up to date
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:3.3.1:testResources[m [1m(default-testResources)[m @ [36mallcontainerproxy[0;1m ---[m
+[[1;34mINFO[m] Copying 27 resources from src/test/resources to target/test-classes
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.11.0:testCompile[m [1m(default-testCompile)[m @ [36mallcontainerproxy[0;1m ---[m
+[[1;34mINFO[m] Nothing to compile - all classes are up to date
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m<<< [0;32mmaven-dependency-plugin:3.5.0:analyze[m [1m(default-cli)[0;1m < [0;1mtest-compile[m @ [36mallcontainerproxy[0;1m <<<[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.5.0:analyze[m [1m(default-cli)[m @ [36mallcontainerproxy[0;1m ---[m
+[[1;33mWARNING[m] Used undeclared dependencies found:
+[[1;33mWARNING[m]    org.springframework.boot:spring-boot-test:jar:3.1.5:test
+[[1;33mWARNING[m]    com.fasterxml.jackson.core:jackson-databind:jar:2.15.3:compile
+[[1;33mWARNING[m]    org.springframework:spring-web:jar:6.0.13:compile
+[[1;33mWARNING[m]    org.springframework.boot:spring-boot:jar:3.1.5:compile
+[[1;33mWARNING[m]    org.springframework:spring-jcl:jar:6.0.13:compile
+[[1;33mWARNING[m]    org.bouncycastle:bcprov-jdk15on:jar:1.60:compile
+[[1;33mWARNING[m]    org.slf4j:slf4j-api:jar:2.0.9:compile
+[[1;33mWARNING[m]    org.thymeleaf:thymeleaf-spring6:jar:3.1.2.RELEASE:compile
+[[1;33mWARNING[m]    org.springframework:spring-context-support:jar:6.0.13:compile
+[[1;33mWARNING[m]    org.junit.jupiter:junit-jupiter-params:jar:5.9.3:test
+[[1;33mWARNING[m]    org.springdoc:springdoc-openapi-common:jar:1.6.14:compile
+[[1;33mWARNING[m]    org.springframework.data:spring-data-commons:jar:3.1.5:compile
+[[1;33mWARNING[m]    org.springframework.security:spring-security-config:jar:6.1.5:compile
+[[1;33mWARNING[m]    org.springframework.security:spring-security-oauth2-core:jar:6.1.5:compile
+[[1;33mWARNING[m]    org.springframework.data:spring-data-redis:jar:3.1.5:compile
+[[1;33mWARNING[m]    org.springframework:spring-webmvc:jar:6.0.13:compile
+[[1;33mWARNING[m]    io.undertow:undertow-servlet:jar:2.3.10.Final:compile
+[[1;33mWARNING[m]    ch.qos.logback:logback-classic:jar:1.4.11:compile
+[[1;33mWARNING[m]    org.springframework:spring-context:jar:6.0.13:compile
+[[1;33mWARNING[m]    org.springframework.boot:spring-boot-autoconfigure:jar:3.1.5:compile
+[[1;33mWARNING[m]    org.springframework:spring-tx:jar:6.0.13:compile
+[[1;33mWARNING[m]    org.junit.jupiter:junit-jupiter-api:jar:5.9.3:test
+[[1;33mWARNING[m]    org.springframework:spring-beans:jar:6.0.13:compile
+[[1;33mWARNING[m]    org.thymeleaf:thymeleaf:jar:3.1.2.RELEASE:compile
+[[1;33mWARNING[m]    org.springframework:spring-test:jar:6.0.13:test
+[[1;33mWARNING[m]    org.junit.platform:junit-platform-engine:jar:1.9.3:test
+[[1;33mWARNING[m]    com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:2.15.3:compile
+[[1;33mWARNING[m]    org.eclipse.angus:jakarta.mail:jar:1.1.0:compile
+[[1;33mWARNING[m]    org.springframework:spring-core:jar:6.0.13:compile
+[[1;33mWARNING[m]    com.fasterxml.jackson.core:jackson-annotations:jar:2.15.3:compile
+[[1;33mWARNING[m]    net.minidev:json-smart:jar:2.4.11:compile
+[[1;33mWARNING[m]    org.glassfish.hk2.external:javax.inject:jar:2.5.0-b36:compile
+[[1;33mWARNING[m]    com.google.code.findbugs:jsr305:jar:3.0.2:compile
+[[1;33mWARNING[m]    io.undertow:undertow-core:jar:2.3.10.Final:compile
+[[1;33mWARNING[m]    commons-lang:commons-lang:jar:2.6:compile
+[[1;33mWARNING[m]    org.mockito:mockito-core:jar:5.3.1:test
+[[1;33mWARNING[m]    io.swagger.core.v3:swagger-annotations:jar:2.2.7:compile
+[[1;33mWARNING[m]    com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:jar:2.15.3:compile
+[[1;33mWARNING[m]    org.assertj:assertj-core:jar:3.24.2:test
+[[1;33mWARNING[m]    io.fabric8:kubernetes-model-core:jar:6.3.1:compile
+[[1;33mWARNING[m]    io.fabric8:kubernetes-client-api:jar:6.3.1:compile
+[[1;33mWARNING[m]    javax.annotation:javax.annotation-api:jar:1.2:compile
+[[1;33mWARNING[m]    org.springframework:spring-expression:jar:6.0.13:compile
+[[1;33mWARNING[m]    org.springframework.boot:spring-boot-test-autoconfigure:jar:3.1.5:test
+[[1;33mWARNING[m]    ch.qos.logback:logback-core:jar:1.4.11:compile
+[[1;33mWARNING[m]    io.swagger.core.v3:swagger-models:jar:2.2.7:compile
+[[1;33mWARNING[m]    org.springframework.security:spring-security-web:jar:6.1.5:compile
+[[1;33mWARNING[m]    com.fasterxml.jackson.core:jackson-core:jar:2.15.3:compile
+[[1;33mWARNING[m]    org.apache.logging.log4j:log4j-api:jar:2.20.0:compile
+[[1;33mWARNING[m]    com.squareup.okhttp3:okhttp:jar:4.10.0:runtime
+[[1;33mWARNING[m]    jakarta.servlet:jakarta.servlet-api:jar:6.0.0:compile
+[[1;33mWARNING[m] Unused declared dependencies found:
+[[1;33mWARNING[m]    org.springframework.boot:spring-boot-starter-mail:jar:3.1.5:compile
+[[1;33mWARNING[m]    org.springframework.boot:spring-boot-starter-web:jar:3.1.5:compile
+[[1;33mWARNING[m]    org.springframework.boot:spring-boot-starter-websocket:jar:3.1.5:compile
+[[1;33mWARNING[m]    org.springframework.boot:spring-boot-starter-security:jar:3.1.5:compile
+[[1;33mWARNING[m]    org.springframework.boot:spring-boot-starter-undertow:jar:3.1.5:compile
+[[1;33mWARNING[m]    org.springframework.boot:spring-boot-starter-thymeleaf:jar:3.1.5:compile
+[[1;33mWARNING[m]    org.thymeleaf.extras:thymeleaf-extras-springsecurity6:jar:3.1.2.RELEASE:compile
+[[1;33mWARNING[m]    org.springframework.boot:spring-boot-starter-integration:jar:3.1.5:compile
+[[1;33mWARNING[m]    org.springframework.integration:spring-integration-redis:jar:6.1.4:compile
+[[1;33mWARNING[m]    org.springframework.boot:spring-boot-starter-test:jar:3.1.5:test
+[[1;33mWARNING[m]    org.springdoc:springdoc-openapi-ui:jar:1.6.14:compile
+[[1;33mWARNING[m]    org.springframework.boot:spring-boot-starter-jdbc:jar:3.1.5:compile
+[[1;33mWARNING[m]    com.fasterxml.woodstox:woodstox-core:jar:6.5.1:compile
+[[1;33mWARNING[m]    commons-collections:commons-collections:jar:3.2.2:compile
+[[1;33mWARNING[m]    org.apache.santuario:xmlsec:jar:2.1.7:compile
+[[1;33mWARNING[m]    org.apache.commons:commons-compress:jar:1.21:compile
+[[1;33mWARNING[m]    io.fabric8:kubernetes-client:jar:6.3.1:compile
+[[1;33mWARNING[m]    org.webjars:bootstrap:jar:5.3.2:compile
+[[1;33mWARNING[m]    org.webjars:jquery:jar:3.7.1:compile
+[[1;33mWARNING[m]    org.webjars.bower:bootstrap-social:jar:5.1.1:compile
+[[1;33mWARNING[m]    org.webjars.bower:fontawesome:jar:4.7.0:compile
+[[1;33mWARNING[m]    org.webjars:datatables:jar:1.13.5:compile
+[[1;33mWARNING[m]    org.webjars:datatables-buttons:jar:2.4.1:compile
+[[1;33mWARNING[m]    org.webjars:datatables-responsive:jar:2.2.7:compile
+[[1;33mWARNING[m]    org.webjars:handlebars:jar:4.7.7:compile
+[[1;33mWARNING[m]    org.glassfish:javax.json:jar:1.1.4:compile
+[[1;33mWARNING[m]    org.projectlombok:lombok:jar:1.18.30:provided
+[[1;33mWARNING[m]    org.bouncycastle:bcprov-jdk18on:jar:1.74:compile
+[[1;33mWARNING[m]    org.bouncycastle:bcprov-ext-jdk18on:jar:1.74:compile
+[[1;33mWARNING[m]    org.bouncycastle:bcpkix-jdk18on:jar:1.74:compile
+[[1;33mWARNING[m]    com.nimbusds:lang-tag:jar:1.7:compile
+[[1;33mWARNING[m]    org.jboss.xnio:xnio-nio:jar:3.8.8.Final:compile
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;32mBUILD SUCCESS[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  2.875 s
+[[1;34mINFO[m] Finished at: 2023-10-21T22:39:02-06:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m

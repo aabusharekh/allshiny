@@ -51,8 +51,6 @@ public class LogStorageFactory extends AbstractFactoryBean<ILogStorage> {
 		String containerLogPath = environment.getProperty("proxy.container-log-path");
 		if (containerLogPath == null || containerLogPath.trim().isEmpty()) {
 			storage = new NoopLogStorage();
-		} else if (containerLogPath.toLowerCase().startsWith("s3://")) {
-			storage = new S3LogStorage();
 		} else {
 			storage = new FileLogStorage();
 		}
