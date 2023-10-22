@@ -1,6 +1,8 @@
 proxy:
-  title: ShinyProxy10
   port: 8080
+  title: IMPACT+
+  landing-page: /
+  template-path: ./templates/1col
   authentication: simple
   admin-groups: admins
   users:
