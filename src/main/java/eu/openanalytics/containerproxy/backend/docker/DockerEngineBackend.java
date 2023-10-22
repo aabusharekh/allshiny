@@ -175,7 +175,7 @@ public class DockerEngineBackend extends AbstractDockerBackend {
 			targetHostName = hostURL.getHost();
 			targetPort = String.valueOf(hostPort);
 		}
-                targetHostName = targetIPAddress == null ? targetHostName : targetIPAddress;
+                targetHostName = (targetIPAddress == null || targetIPAddress.isBlank()) ? targetHostName : targetIPAddress;
 		return new URI(String.format("%s://%s:%s%s", targetProtocol, targetHostName, targetPort, portMapping.getTargetPath()));
 	}
 	
