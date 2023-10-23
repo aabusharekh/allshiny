@@ -71,7 +71,6 @@ import io.fabric8.kubernetes.api.model.VolumeBuilder;
 import io.fabric8.kubernetes.api.model.VolumeMount;
 import io.fabric8.kubernetes.api.model.VolumeMountBuilder;
 import io.fabric8.kubernetes.client.ConfigBuilder;
-import io.fabric8.kubernetes.client.DefaultKubernetesClient;
 import io.fabric8.kubernetes.client.KubernetesClient;
 import io.fabric8.kubernetes.client.KubernetesClientException;
 import io.fabric8.kubernetes.client.dsl.LogWatch;
@@ -112,6 +111,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static eu.openanalytics.containerproxy.backend.kubernetes.PodPatcher.DEBUG_PROPERTY;
+import io.fabric8.kubernetes.client.KubernetesClientBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class KubernetesBackend extends AbstractContainerBackend {
@@ -162,7 +162,9 @@ public class KubernetesBackend extends AbstractContainerBackend {
 			if (Files.exists(certFilePath)) configBuilder.withClientKeyFile(certFilePath.toString());
 		}
 
-		kubeClient = new DefaultKubernetesClient(configBuilder.build());
+		//kubeClient = new DefaultKubernetesClient(configBuilder.build());
+                kubeClient = new KubernetesClientBuilder().withConfig(configBuilder.build()).build();
+
 		kubernetesManifestsRemover = new KubernetesManifestsRemover(kubeClient, getAppNamespaces(), identifierService);
 		logManifests = environment.getProperty(DEBUG_PROPERTY, Boolean.class, false);
 	}

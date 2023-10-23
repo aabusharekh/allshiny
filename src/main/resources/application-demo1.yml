@@ -1,0 +1,49 @@
+proxy:
+  title: ShinyProxy3
+  port: 8080
+  authentication: simple
+  admin-groups: admins
+  usage-stats-password: admin
+  usage-stats-username: admin
+  usage-stats-url: http://127.0.0.1:8086/write?db=shinyproxy_usagestats
+  store-mode: None
+  users:
+  - name: jack
+    password: password
+    groups: admins
+  - name: jeff
+    password: password
+  docker:
+      #url: http://127.0.0.1:2375
+      internal-networking: true
+      
+  # change this route to your work directory, use absolute path
+  # work-directory: /Users/kassambara/Documents/shinyproxy-docker-compose-example
+  specs:
+  - id: 01_hello
+    display-name: Hello Application
+    description: Application which demonstrates the basics of a Shiny app
+    container-cmd: ["R", "-e", "shinyproxy::run_01_hello()"]
+    container-image: openanalytics/shinyproxy-demo
+    #container-network: "${proxy.docker.container-network}"
+    # container-volumes: ["${proxy.work-directory}/apps:/apps"]
+  - id: euler
+    display-name: Euler's number
+    #container-cmd: ["R", "-e", "shiny::runApp('/root/euler')"]
+    container-image: euler:latest
+    
+# management:
+#    influx:
+#        metrics:
+#            export:
+#                enabled: false
+management:
+    metrics:
+        export:
+            influx:
+                user-name: admin
+                password: admin
+logging:
+  level: DEBUG
+  file:
+    /log/shinyproxy.log
