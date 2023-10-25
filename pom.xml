@@ -19,9 +19,9 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <version.arquillian_cube>1.18.2</version.arquillian_cube>
-        <java.version>19</java.version>
-        <maven.compiler.source>19</maven.compiler.source>
-        <maven.compiler.target>19</maven.compiler.target>
+        <java.version>17</java.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <containerproxy.version>SR_2.0.0</containerproxy.version>
         <resource.delimiter>&amp;</resource.delimiter>
     </properties>
@@ -70,7 +70,6 @@
             <artifactId>h2</artifactId>
             <version>2.2.224</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
@@ -186,26 +185,6 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
         </dependency>      
-        <dependency>
-            <!-- Dependency of SAML -> update to fix security issue -->
-            <groupId>com.fasterxml.woodstox</groupId>
-            <artifactId>woodstox-core</artifactId>
-            <version>6.5.1</version>          
-        </dependency>
-        <dependency>
-            <!-- Dependency of SAML -> update to fix security issue -->
-            <groupId>commons-collections</groupId>
-            <artifactId>commons-collections</artifactId>
-            <version>3.2.2</version>
-        </dependency>
-        <dependency>
-            <!-- Dependency of SAML -> update to fix security issue -->
-            <groupId>org.apache.santuario</groupId>
-            <artifactId>xmlsec</artifactId>
-            <version>2.1.7</version>
-        </dependency>
-
-
         <!-- Docker -->
         <dependency>
             <groupId>com.spotify</groupId>
@@ -301,7 +280,6 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <scope>provided</scope>
         </dependency>
         
         <!-- Recursive dependencies which are upgraded for security -->

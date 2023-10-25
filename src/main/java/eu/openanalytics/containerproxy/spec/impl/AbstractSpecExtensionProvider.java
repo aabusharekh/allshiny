@@ -39,6 +39,7 @@ public class AbstractSpecExtensionProvider<T extends ISpecExtension> {
     public void postInit() {
         if (specs != null) {
             specs.forEach(specExtension -> {
+                System.err.println(specExtension.getId());
                 proxySpecProvider.getSpec(specExtension.getId()).addSpecExtension(specExtension);
             });
         }

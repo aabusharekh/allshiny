@@ -61,7 +61,7 @@ public class ShinyProxySpecExtension extends AbstractSpecExtension {
 
     String templateGroup;
 
-    Map<String, String> templateProperties = new HashMap<>();
+    Map<String, String> templateProperties;
 
     @Override
     public ShinyProxySpecExtension firstResolve(SpecExpressionResolver resolver, SpecExpressionContext context) {

@@ -24,8 +24,11 @@ package eu.openanalytics.containerproxy.backend.kubernetes;
 import eu.openanalytics.containerproxy.spec.impl.AbstractSpecExtensionProvider;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
 
-@Configuration
+@Component
+@Primary
 @ConfigurationProperties(prefix = "proxy")
 public class KubernetesSpecExtensionProvider extends AbstractSpecExtensionProvider<KubernetesSpecExtension> {
 

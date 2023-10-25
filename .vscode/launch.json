@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ContainerProxyApplication<allcontainerproxy>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "eu.openanalytics.containerproxy.ContainerProxyApplication",
+            "projectName": "allcontainerproxy",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
