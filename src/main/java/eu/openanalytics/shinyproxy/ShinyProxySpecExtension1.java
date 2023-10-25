@@ -25,32 +25,18 @@ import eu.openanalytics.containerproxy.spec.expression.SpecExpressionContext;
 import eu.openanalytics.containerproxy.spec.expression.SpecExpressionResolver;
 import eu.openanalytics.containerproxy.spec.expression.SpelField;
 import eu.openanalytics.shinyproxy.runtimevalues.WebsocketReconnectionMode;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.Map;
 
-@Data
-@Setter
-@Getter
-@Builder(toBuilder = true)
-@AllArgsConstructor
-@NoArgsConstructor(force = true, access = AccessLevel.PRIVATE) // Jackson deserialize compatibility
 public class ShinyProxySpecExtension1 implements ISpecExtension {
-    
+
     String id;
-    
+
     WebsocketReconnectionMode websocketReconnectionMode;
 
     Boolean shinyForceFullReload;
 
-    @Builder.Default
-    SpelField.Integer maxInstances = new SpelField.Integer();
+    SpelField.Integer maxInstances;// = new SpelField.Integer();
 
     Boolean hideNavbarOnMainPageLink;
 
@@ -62,6 +48,21 @@ public class ShinyProxySpecExtension1 implements ISpecExtension {
 
     Map<String, String> templateProperties;
 
+    public ShinyProxySpecExtension1() {
+    }
+
+    public ShinyProxySpecExtension1(String id, WebsocketReconnectionMode websocketReconnectionMode, Boolean shinyForceFullReload, SpelField.Integer maxInstances, Boolean hideNavbarOnMainPageLink, Boolean alwaysShowSwitchInstance, Boolean trackAppUrl, String templateGroup, Map<String, String> templateProperties) {
+        this.id = id;
+        this.websocketReconnectionMode = websocketReconnectionMode;
+        this.shinyForceFullReload = shinyForceFullReload;
+        this.maxInstances = maxInstances;
+        this.hideNavbarOnMainPageLink = hideNavbarOnMainPageLink;
+        this.alwaysShowSwitchInstance = alwaysShowSwitchInstance;
+        this.trackAppUrl = trackAppUrl;
+        this.templateGroup = templateGroup;
+        this.templateProperties = templateProperties;
+    }
+
     @Override
     public ShinyProxySpecExtension1 firstResolve(SpecExpressionResolver resolver, SpecExpressionContext context) {
         return this;
@@ -70,6 +71,83 @@ public class ShinyProxySpecExtension1 implements ISpecExtension {
     @Override
     public ShinyProxySpecExtension1 finalResolve(SpecExpressionResolver resolver, SpecExpressionContext context) {
         return this;
+    }
+
+    @Override
+    public String getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public WebsocketReconnectionMode getWebsocketReconnectionMode() {
+        return websocketReconnectionMode;
+    }
+
+    public Boolean getShinyForceFullReload() {
+        return shinyForceFullReload;
+    }
+
+    public SpelField.Integer getMaxInstances() {
+        if (this.maxInstances == null) {
+            this.maxInstances = new SpelField.Integer();
+        }
+        return maxInstances;
+    }
+
+    public Boolean getHideNavbarOnMainPageLink() {
+        return hideNavbarOnMainPageLink;
+    }
+
+    public Boolean getAlwaysShowSwitchInstance() {
+        return alwaysShowSwitchInstance;
+    }
+
+    public Boolean getTrackAppUrl() {
+        return trackAppUrl;
+    }
+
+    public String getTemplateGroup() {
+        return templateGroup;
+    }
+
+    public Map<String, String> getTemplateProperties() {
+        return templateProperties;
+    }
+
+    public void setWebsocketReconnectionMode(WebsocketReconnectionMode websocketReconnectionMode) {
+        this.websocketReconnectionMode = websocketReconnectionMode;
+    }
+
+    public void setShinyForceFullReload(Boolean shinyForceFullReload) {
+        this.shinyForceFullReload = shinyForceFullReload;
+    }
+
+    public void setMaxInstances(SpelField.Integer maxInstances) {
+        this.maxInstances = maxInstances;
+    }
+
+    public void setHideNavbarOnMainPageLink(Boolean hideNavbarOnMainPageLink) {
+        this.hideNavbarOnMainPageLink = hideNavbarOnMainPageLink;
+    }
+
+    public void setAlwaysShowSwitchInstance(Boolean alwaysShowSwitchInstance) {
+        this.alwaysShowSwitchInstance = alwaysShowSwitchInstance;
+    }
+
+    public void setTrackAppUrl(Boolean trackAppUrl) {
+        this.trackAppUrl = trackAppUrl;
+    }
+
+    public void setTemplateGroup(String templateGroup) {
+        this.templateGroup = templateGroup;
+    }
+
+    public void setTemplateProperties(Map<String, String> templateProperties) {
+        this.templateProperties = templateProperties;
     }
 
 }

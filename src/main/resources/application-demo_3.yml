@@ -1,0 +1,73 @@
+proxy:
+  port: 8080
+  authentication: simple
+  admin-groups: admins
+  users:
+  - name: Tom
+    password: Tom@123
+    groups: admins
+  - name: Jon
+    password: Jon@123
+    groups: admins
+  - name: Adam
+    password: Adam@123
+  - name: Guest
+    password: Guest@123
+  container-backend: kubernetes
+  kubernetes:
+    internal-networking: true
+    url: https://192.168.49.2:8443 
+    #cert-path: /home/ubuntu/.minikube/profiles/shiny
+    namespace: shiny
+    image-pull-policy: IfNotPresent
+  specs:
+  - id: lranalyzer
+    display-name: Loss Ratio Analyzer
+    access-groups: PNCA_DEV_SWISSRE
+    description: Run LR Analyzer
+    template-properties:
+      imagetype: img-map
+    container-memory-request: "512M"
+    container-cpu-request: 200m
+    container-memory-limit: "4G"
+    container-cpu-limit: 2
+    container-image: pncamain.azurecr.io/lr-usa:0.0.3
+    container-env:
+      USER: "#{proxy.userId}"
+      RUN_ENV: DEV
+      SERVICE_URL: "https://pnca-d-api-eus-apim.azure-api.net/homainternal/v1/fullstatepage/async"
+      DATA_PATH: /data
+      TMPDIR: /data/tmp
+      OUTPUT_PATH: /data/lr/output_data
+      APP_URL_PATH: /app_direct/lranalyzer/
+      APP_LOG_PATH: /data/lr/logs
+      DEBUG: False
+      APP_PORT: 8080
+      LR_SERVICE_CODE: "secretKeyRef:lr-secrets:LR_SERVICE_CODE"
+    port: 8080
+    kubernetes-pod-patches: |
+      - op: add
+        path: /spec/volumes
+        value:
+          - name: app-data-folder
+            emptyDir:
+              sizeLimit: 2000Mi
+      - op: add
+          path: /spec/containers/0/volumeMounts
+          value:
+            - mountPath: /data
+              name: app-data-folder
+      - op: add
+        path: /spec/securityContext
+        value:
+          runAsUser: 5001
+          runAsGroup: 5001
+          runAsNonRoot: true
+      - op: add
+        path: /spec/containers/0/securityContext
+        value:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+logging:
+  file:
+    shinyproxy.log

@@ -20,40 +20,31 @@
  */
 package eu.openanalytics.containerproxy.backend.kubernetes;
 
-import eu.openanalytics.containerproxy.model.spec.AbstractSpecExtension;
 import eu.openanalytics.containerproxy.model.spec.ISpecExtension;
 import eu.openanalytics.containerproxy.spec.expression.SpecExpressionContext;
 import eu.openanalytics.containerproxy.spec.expression.SpecExpressionResolver;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Data
-@Setter
-@Getter
-@Builder(toBuilder = true)
-@AllArgsConstructor
-@NoArgsConstructor(force = true, access = AccessLevel.PRIVATE) // Jackson deserialize compatibility
-public class KubernetesSpecExtension1 implements ISpecExtension{
+public class KubernetesSpecExtension1 implements ISpecExtension {
 
     String id;
 
     String kubernetesPodPatches;
 
-    @Builder.Default
-    List<String> kubernetesAdditionalManifests = new ArrayList<>();
+    public KubernetesSpecExtension1() {
+    }
 
-    @Builder.Default
-    List<String> kubernetesAdditionalPersistentManifests = new ArrayList<>();
+    public KubernetesSpecExtension1(String id, String kubernetesPodPatches) {
+        this.id = id;
+        this.kubernetesPodPatches = kubernetesPodPatches;
+    }
+
+    List<String> kubernetesAdditionalManifests;
+
+    List<String> kubernetesAdditionalPersistentManifests;
 
     @Override
     public KubernetesSpecExtension1 firstResolve(SpecExpressionResolver resolver, SpecExpressionContext context) {
@@ -62,11 +53,50 @@ public class KubernetesSpecExtension1 implements ISpecExtension{
 
     @Override
     public KubernetesSpecExtension1 finalResolve(SpecExpressionResolver resolver, SpecExpressionContext context) {
-        return toBuilder()
-                .kubernetesAdditionalManifests(kubernetesAdditionalManifests.stream().map(m -> resolver.evaluateToString(m, context)).collect(Collectors.toList()))
-                .kubernetesAdditionalPersistentManifests(kubernetesAdditionalPersistentManifests.stream().map(m -> resolver.evaluateToString(m, context)).collect(Collectors.toList()))
-                .kubernetesPodPatches(resolver.evaluateToString(kubernetesPodPatches, context))
-                .build();
+        this.kubernetesAdditionalManifests = this.getKubernetesAdditionalManifests().stream().map(m -> resolver.evaluateToString(m, context)).collect(Collectors.toList());
+        this.kubernetesAdditionalPersistentManifests = this.getKubernetesAdditionalPersistentManifests().stream().map(m -> resolver.evaluateToString(m, context)).collect(Collectors.toList());
+        this.kubernetesPodPatches = resolver.evaluateToString(kubernetesPodPatches, context);
+        return this;
+    }
+
+    @Override
+    public String getId() {
+        return id;
+    }
+
+    public String getKubernetesPodPatches() {
+        return kubernetesPodPatches;
+    }
+
+    public List<String> getKubernetesAdditionalManifests() {
+        if (this.kubernetesAdditionalManifests == null) {
+            this.kubernetesAdditionalManifests = new ArrayList<>();
+        }
+        return kubernetesAdditionalManifests;
+    }
+
+    public List<String> getKubernetesAdditionalPersistentManifests() {
+        if (this.kubernetesAdditionalPersistentManifests == null) {
+            this.kubernetesAdditionalPersistentManifests = new ArrayList<>();
+        }
+        return kubernetesAdditionalPersistentManifests;
+    }
+
+    @Override
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setKubernetesPodPatches(String kubernetesPodPatches) {
+        this.kubernetesPodPatches = kubernetesPodPatches;
+    }
+
+    public void setKubernetesAdditionalManifests(List<String> kubernetesAdditionalManifests) {
+        this.kubernetesAdditionalManifests = kubernetesAdditionalManifests;
+    }
+
+    public void setKubernetesAdditionalPersistentManifests(List<String> kubernetesAdditionalPersistentManifests) {
+        this.kubernetesAdditionalPersistentManifests = kubernetesAdditionalPersistentManifests;
     }
 
 }

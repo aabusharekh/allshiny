@@ -280,6 +280,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <scope>provided</scope>
         </dependency>
         
         <!-- Recursive dependencies which are upgraded for security -->
