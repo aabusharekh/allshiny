@@ -34,7 +34,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 @ConfigurationProperties(prefix = "proxy")
 public class ShinyProxySpecExtensionProvider {
 
-    private List<ShinyProxySpecExtension> specs;
+    private List<ShinyProxySpecExtension1> specs;
 
     @Autowired
     private IProxySpecProvider proxySpecProvider;
@@ -46,11 +46,11 @@ public class ShinyProxySpecExtensionProvider {
         });
     }
 
-    public void setSpecs(List<ShinyProxySpecExtension> specs) {
+    public void setSpecs(List<ShinyProxySpecExtension1> specs) {
         this.specs = specs;
     }
 
-    public List<ShinyProxySpecExtension> getSpecs() {
+    public List<ShinyProxySpecExtension1> getSpecs() {
         return specs;
     }
 

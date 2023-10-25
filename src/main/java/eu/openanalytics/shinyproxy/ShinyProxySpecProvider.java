@@ -124,7 +124,7 @@ public class ShinyProxySpecProvider implements IProxySpecProvider {
 	public List<RuntimeValue> getRuntimeValues(ProxySpec proxy) {
 		List<RuntimeValue> runtimeValues = new ArrayList<>();
 
-		WebsocketReconnectionMode webSocketReconnectionMode = proxy.getSpecExtension(ShinyProxySpecExtension.class).getWebsocketReconnectionMode();
+		WebsocketReconnectionMode webSocketReconnectionMode = proxy.getSpecExtension(ShinyProxySpecExtension1.class).getWebsocketReconnectionMode();
 		if (webSocketReconnectionMode == null) {
 			runtimeValues.add(new RuntimeValue(WebSocketReconnectionModeKey.inst, environment.getProperty("proxy.default-websocket-reconnection-mode", WebsocketReconnectionMode.class, WebsocketReconnectionMode.None)));
 		} else {
@@ -133,7 +133,7 @@ public class ShinyProxySpecProvider implements IProxySpecProvider {
 
 		runtimeValues.add(new RuntimeValue(ShinyForceFullReloadKey.inst, getShinyForceFullReload(proxy)));
 
-		Boolean trackAppUrl = proxy.getSpecExtension(ShinyProxySpecExtension.class).getTrackAppUrl();
+		Boolean trackAppUrl = proxy.getSpecExtension(ShinyProxySpecExtension1.class).getTrackAppUrl();
 		if (trackAppUrl == null) {
 			trackAppUrl = environment.getProperty("proxy.default-track-app-url", Boolean.class, false);
 		}
@@ -149,7 +149,7 @@ public class ShinyProxySpecProvider implements IProxySpecProvider {
 				user.getPrincipal(),
 				user.getCredentials());
 
-		Integer maxInstances = proxySpec.getSpecExtension(ShinyProxySpecExtension.class).getMaxInstances().resolve(expressionResolver, context).getValueOrNull();
+		Integer maxInstances = proxySpec.getSpecExtension(ShinyProxySpecExtension1.class).getMaxInstances().resolve(expressionResolver, context).getValueOrNull();
 		if (maxInstances != null) {
             return maxInstances;
 		}
@@ -168,7 +168,7 @@ public class ShinyProxySpecProvider implements IProxySpecProvider {
 		Integer resolvedDefault = expressionResolver.evaluateToInteger(defaultMaxInstances, context);
 
 		for (ProxySpec proxySpec: getSpecs()) {
-			Integer maxInstances = proxySpec.getSpecExtension(ShinyProxySpecExtension.class).getMaxInstances().resolve(expressionResolver, context).getValueOrNull();
+			Integer maxInstances = proxySpec.getSpecExtension(ShinyProxySpecExtension1.class).getMaxInstances().resolve(expressionResolver, context).getValueOrNull();
 			if (maxInstances != null) {
 				result.put(proxySpec.getId(), maxInstances);
 			} else {
@@ -180,7 +180,7 @@ public class ShinyProxySpecProvider implements IProxySpecProvider {
 	}
 
 	public Boolean getShinyForceFullReload(ProxySpec proxySpec) {
-		Boolean shinyProxyForceFullReload = proxySpec.getSpecExtension(ShinyProxySpecExtension.class).getShinyForceFullReload();
+		Boolean shinyProxyForceFullReload = proxySpec.getSpecExtension(ShinyProxySpecExtension1.class).getShinyForceFullReload();
 		if (shinyProxyForceFullReload != null) {
 			return shinyProxyForceFullReload;
 		}
@@ -189,7 +189,7 @@ public class ShinyProxySpecProvider implements IProxySpecProvider {
 
 
 	public Boolean getHideNavbarOnMainPageLink(ProxySpec proxySpec) {
-		Boolean hideNavbarOnMainPageLink = proxySpec.getSpecExtension(ShinyProxySpecExtension.class).getHideNavbarOnMainPageLink();
+		Boolean hideNavbarOnMainPageLink = proxySpec.getSpecExtension(ShinyProxySpecExtension1.class).getHideNavbarOnMainPageLink();
 		if (hideNavbarOnMainPageLink != null) {
 			return hideNavbarOnMainPageLink;
 		}
@@ -197,7 +197,7 @@ public class ShinyProxySpecProvider implements IProxySpecProvider {
 	}
 	
 	public Boolean getAlwaysShowSwitchInstance(ProxySpec proxySpec) {
-		Boolean alwaysShowSwitchInstance = proxySpec.getSpecExtension(ShinyProxySpecExtension.class).getAlwaysShowSwitchInstance();
+		Boolean alwaysShowSwitchInstance = proxySpec.getSpecExtension(ShinyProxySpecExtension1.class).getAlwaysShowSwitchInstance();
 		if (alwaysShowSwitchInstance != null) {
 			return alwaysShowSwitchInstance;
 		}

@@ -182,7 +182,7 @@ public class KubernetesBackend extends AbstractContainerBackend {
 		String containerId = UUID.randomUUID().toString();
 		rContainerBuilder.id(containerId);
 
-		KubernetesSpecExtension specExtension = proxySpec.getSpecExtension(KubernetesSpecExtension.class);
+		KubernetesSpecExtension1 specExtension = proxySpec.getSpecExtension(KubernetesSpecExtension1.class);
 		try {
 			String kubeNamespace = getProperty(PROPERTY_NAMESPACE, DEFAULT_NAMESPACE);
 			String apiVersion = getProperty(PROPERTY_API_VERSION, DEFAULT_API_VERSION);
@@ -466,7 +466,7 @@ public class KubernetesBackend extends AbstractContainerBackend {
 		}
 	}
 
-	private JsonPatch readPatchFromSpec(KubernetesSpecExtension specExtension) throws JsonProcessingException {
+	private JsonPatch readPatchFromSpec(KubernetesSpecExtension1 specExtension) throws JsonProcessingException {
 		String patchAsString = specExtension.getKubernetesPodPatches();
 		if (patchAsString == null || StringUtils.isBlank(patchAsString)) {
 			return null;
@@ -482,7 +482,7 @@ public class KubernetesBackend extends AbstractContainerBackend {
 	 *
 	 * The resource will only be created if it does not already exist.
 	 */
-	private void createAdditionalManifests(Proxy proxy, KubernetesSpecExtension specExtension, String namespace) throws JsonProcessingException {
+	private void createAdditionalManifests(Proxy proxy, KubernetesSpecExtension1 specExtension, String namespace) throws JsonProcessingException {
 		for (GenericKubernetesResource fullObject: parseAdditionalManifests(proxy, namespace, specExtension.getKubernetesAdditionalManifests(), false)) {
 			applyAdditionalManifest(proxy, fullObject);
 		}

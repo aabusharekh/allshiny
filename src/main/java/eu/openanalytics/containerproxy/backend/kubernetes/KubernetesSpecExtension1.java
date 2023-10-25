@@ -1,5 +1,5 @@
 /**
- * ShinyProxy
+ * ContainerProxy
  *
  * Copyright (C) 2016-2023 Open Analytics
  *
@@ -18,13 +18,12 @@
  * You should have received a copy of the Apache License
  * along with this program.  If not, see <http://www.apache.org/licenses/>
  */
-package eu.openanalytics.shinyproxy;
+package eu.openanalytics.containerproxy.backend.kubernetes;
 
 import eu.openanalytics.containerproxy.model.spec.AbstractSpecExtension;
+import eu.openanalytics.containerproxy.model.spec.ISpecExtension;
 import eu.openanalytics.containerproxy.spec.expression.SpecExpressionContext;
 import eu.openanalytics.containerproxy.spec.expression.SpecExpressionResolver;
-import eu.openanalytics.containerproxy.spec.expression.SpelField;
-import eu.openanalytics.shinyproxy.runtimevalues.WebsocketReconnectionMode;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,43 +33,40 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
-@EqualsAndHashCode(callSuper = true)
 @Data
 @Setter
 @Getter
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor(force = true, access = AccessLevel.PRIVATE) // Jackson deserialize compatibility
-public class ShinyProxySpecExtension extends AbstractSpecExtension {
+public class KubernetesSpecExtension1 implements ISpecExtension{
 
-    WebsocketReconnectionMode websocketReconnectionMode;
+    String id;
 
-    Boolean shinyForceFullReload;
+    String kubernetesPodPatches;
 
     @Builder.Default
-    SpelField.Integer maxInstances = new SpelField.Integer();
+    List<String> kubernetesAdditionalManifests = new ArrayList<>();
 
-    Boolean hideNavbarOnMainPageLink;
-
-    Boolean alwaysShowSwitchInstance;
-
-    Boolean trackAppUrl;
-
-    String templateGroup;
-
-    Map<String, String> templateProperties;
+    @Builder.Default
+    List<String> kubernetesAdditionalPersistentManifests = new ArrayList<>();
 
     @Override
-    public ShinyProxySpecExtension firstResolve(SpecExpressionResolver resolver, SpecExpressionContext context) {
+    public KubernetesSpecExtension1 firstResolve(SpecExpressionResolver resolver, SpecExpressionContext context) {
         return this;
     }
 
     @Override
-    public ShinyProxySpecExtension finalResolve(SpecExpressionResolver resolver, SpecExpressionContext context) {
-        return this;
+    public KubernetesSpecExtension1 finalResolve(SpecExpressionResolver resolver, SpecExpressionContext context) {
+        return toBuilder()
+                .kubernetesAdditionalManifests(kubernetesAdditionalManifests.stream().map(m -> resolver.evaluateToString(m, context)).collect(Collectors.toList()))
+                .kubernetesAdditionalPersistentManifests(kubernetesAdditionalPersistentManifests.stream().map(m -> resolver.evaluateToString(m, context)).collect(Collectors.toList()))
+                .kubernetesPodPatches(resolver.evaluateToString(kubernetesPodPatches, context))
+                .build();
     }
 
 }

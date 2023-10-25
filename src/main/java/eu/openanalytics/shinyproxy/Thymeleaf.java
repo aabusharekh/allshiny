@@ -53,7 +53,7 @@ public class Thymeleaf {
         if (proxySpec == null) {
             return null;
         }
-        return proxySpec.getSpecExtension(ShinyProxySpecExtension.class).getTemplateProperties().get(property);
+        return proxySpec.getSpecExtension(ShinyProxySpecExtension1.class).getTemplateProperties().get(property);
     }
 
     public String getTemplateProperty(String specId, String property, String defaultValue) {

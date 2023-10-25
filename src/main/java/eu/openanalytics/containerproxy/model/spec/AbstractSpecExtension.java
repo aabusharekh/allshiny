@@ -22,7 +22,7 @@ package eu.openanalytics.containerproxy.model.spec;
 
 abstract public class AbstractSpecExtension implements ISpecExtension {
 
-    protected String id;
+    String id;
 
     @Override
     public String getId() {

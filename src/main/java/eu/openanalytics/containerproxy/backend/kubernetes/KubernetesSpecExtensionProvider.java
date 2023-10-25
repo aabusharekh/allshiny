@@ -20,16 +20,37 @@
  */
 package eu.openanalytics.containerproxy.backend.kubernetes;
 
-
-import eu.openanalytics.containerproxy.spec.impl.AbstractSpecExtensionProvider;
+import eu.openanalytics.containerproxy.spec.IProxySpecProvider;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Component;
 
-@Component
-@Primary
+@Configuration
 @ConfigurationProperties(prefix = "proxy")
-public class KubernetesSpecExtensionProvider extends AbstractSpecExtensionProvider<KubernetesSpecExtension> {
+public class KubernetesSpecExtensionProvider {// extends AbstractSpecExtensionProvider<KubernetesSpecExtension> {
 
+    private List<KubernetesSpecExtension1> specs;
+
+    @Autowired
+    private IProxySpecProvider proxySpecProvider;
+
+    @PostConstruct
+    public void postInit() {
+        if (specs != null) {
+            specs.forEach(specExtension -> {
+                System.err.println(specExtension.getId());
+                proxySpecProvider.getSpec(specExtension.getId()).addSpecExtension(specExtension);
+            });
+        }
+    }
+
+    public void setSpecs(List<KubernetesSpecExtension1> specs) {
+        this.specs = specs;
+    }
+
+    public List<KubernetesSpecExtension1> getSpecs() {
+        return specs;
+    }
 }
