@@ -33,6 +33,8 @@
 		history.forward();
 	</script>
 	<link rel="stylesheet" media="screen" th:href="@{${bootstrapCss}}" />
+        <link rel="stylesheet" media="screen" th:href="@{${resourcePrefix} + ${bootstrapIconsCss}}"/>
+        <link rel="stylesheet" media="screen" th:href="@{${resourcePrefix} + ${fontAwesomeCss}}"/>
 	<link rel="stylesheet" media="screen" th:href="@{/css/login.css}"/>
 	<script th:src="@{${jqueryJs}}"></script>
 	<script th:src="@{${bootstrapJs}}"></script>
