@@ -5,14 +5,14 @@
 
     <groupId>eu.openanalytics</groupId>
     <artifactId>allcontainerproxy</artifactId>
-    <version>SR_2.0.0</version>
+    <version>SR_2.0.1</version>
     <name>AllContainerProxy-19</name>
     <packaging>jar</packaging>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.1.5</version>
+        <version>3.2.2</version>
         <relativePath />
     </parent>
 
