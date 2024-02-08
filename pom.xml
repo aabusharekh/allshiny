@@ -5,7 +5,7 @@
 
     <groupId>eu.openanalytics</groupId>
     <artifactId>allcontainerproxy</artifactId>
-    <version>SR_2.0.1</version>
+    <version>SR_3.0.0</version>
     <name>AllContainerProxy-19</name>
     <packaging>jar</packaging>
 
