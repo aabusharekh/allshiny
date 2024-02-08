@@ -22,47 +22,10 @@
         <java.version>19</java.version>
         <maven.compiler.source>19</maven.compiler.source>
         <maven.compiler.target>19</maven.compiler.target>
-        <containerproxy.version>SR_2.0.0</containerproxy.version>
+        <containerproxy.version>SR_2.0.1</containerproxy.version>
         <resource.delimiter>&amp;</resource.delimiter>
     </properties>
 
-    <distributionManagement>
-        <snapshotRepository>
-            <id>oa-nexus-snapshots</id>
-            <name>OpenAnalytics Snapshots Repository</name>
-            <url>https://nexus.openanalytics.eu/repository/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>oa-nexus-releases</id>
-            <name>OpenAnalytics Release Repository</name>
-            <url>https://nexus.openanalytics.eu/repository/releases</url>
-        </repository>
-    </distributionManagement>
-
-    <repositories>
-        <repository>
-            <id>central</id>
-            <name>Central Repository</name>
-            <url>https://repo.maven.apache.org/maven2</url>
-            <layout>default</layout>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <!-- Currently used only for the monetdb dependency -->
-            <id>clojars</id>
-            <url>https://clojars.org/repo/</url>
-        </repository>
-        <repository>
-            <id>oa-nexus-releases</id>
-            <url>https://nexus.openanalytics.eu/repository/releases</url>
-        </repository>
-        <repository>
-            <id>shibboleth-releases</id>
-            <url>https://build.shibboleth.net/nexus/content/repositories/releases/</url>
-        </repository>
-    </repositories>
 
     <dependencies>
         <dependency>
