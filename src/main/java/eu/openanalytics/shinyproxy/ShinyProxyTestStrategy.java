@@ -64,7 +64,7 @@ public class ShinyProxyTestStrategy implements IProxyTestStrategy {
 					return true;
 				}
 				URL testURL = new URL(targetURI.toString() + "/");
-				HttpURLConnection connection = ((HttpURLConnection) testURL.openConnection());
+				HttpURLConnection connection = ((HttpURLConnection) testURL.openConnection(java.net.Proxy.NO_PROXY));
 				if (currentAttempt <= 5) {
 					// When the container has only just started (or when the k8s service has only just been created),
 					// it could be that our traffic ends in a black hole, and we need to wait the full 5s seconds of
