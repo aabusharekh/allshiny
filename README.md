@@ -41,6 +41,9 @@ docker run -it ghcr.io/google/osv-scanner -h
 docker run -it -v ${PWD}:/src ghcr.io/google/osv-scanner -L /src/go.mod
 
 docker run -it -v ${PWD}:/src ghcr.io/google/osv-scanner -r /src/
+docker run -it -v ${PWD}:/src ghcr.io/google/osv-scanner -r /src/
+
+mvn org.owasp:dependency-check-maven:check
 
 
 

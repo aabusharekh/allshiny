@@ -5,7 +5,7 @@
 
     <groupId>eu.openanalytics</groupId>
     <artifactId>allcontainerproxy</artifactId>
-    <version>SR_3.0.0</version>
+    <version>SR_3.4.0</version>
     <name>AllContainerProxy-19</name>
     <packaging>jar</packaging>
 
@@ -22,7 +22,7 @@
         <java.version>19</java.version>
         <maven.compiler.source>19</maven.compiler.source>
         <maven.compiler.target>19</maven.compiler.target>
-        <containerproxy.version>SR_2.0.1</containerproxy.version>
+        <containerproxy.version>SR_3.4.0</containerproxy.version>
         <resource.delimiter>&amp;</resource.delimiter>
     </properties>
 
@@ -259,17 +259,17 @@
         <dependency>
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcprov-jdk18on</artifactId>
-            <version>1.74</version>
+            <version>1.78</version>
         </dependency>
         <dependency>
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcprov-ext-jdk18on</artifactId>
-            <version>1.74</version>
+            <version>1.78</version>
         </dependency>
         <dependency>
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcpkix-jdk18on</artifactId>
-            <version>1.74</version>
+            <version>1.78</version>
         </dependency>
         <!-- Dependency of spring-security-oauth2-client -->
         <dependency>
@@ -281,18 +281,29 @@
         <dependency>
             <groupId>org.jboss.xnio</groupId>
             <artifactId>xnio-nio</artifactId>
-            <version>3.8.8.Final</version>
+            <version>3.8.14.Final</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.xnio</groupId>
             <artifactId>xnio-api</artifactId>
-            <version>3.8.8.Final</version>
+            <version>3.8.14.Final</version>
         </dependency>			
     </dependencies>
 
     <dependencyManagement>
         <dependencies>
+            <!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15to18 -->
+            <dependency>
+                <groupId>org.bouncycastle</groupId>
+                <artifactId>bcprov-jdk15to18</artifactId>
+                <version>1.79</version>
+            </dependency>
 
+            <dependency>
+                <groupId>org.bouncycastle</groupId>
+                <artifactId>bcprov-jdk15on</artifactId>
+                <version>1.70</version>
+            </dependency>
             <!-- https://mvnrepository.com/artifact/com.squareup.okio/okio-jvm -->
             <dependency>
                 <groupId>com.squareup.okio</groupId>
