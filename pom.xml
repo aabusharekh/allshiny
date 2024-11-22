@@ -12,7 +12,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.2.2</version>
+        <version>3.4.0</version>
         <relativePath />
     </parent>
 
@@ -31,7 +31,6 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <version>2.2.224</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -570,6 +569,19 @@
                     </algorithms>
                     <attachChecksums>true</attachChecksums>
                     <csvSummary>false</csvSummary>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.owasp</groupId>
+                <artifactId>dependency-check-maven</artifactId>
+                <version>11.1.0</version> <!-- Check for the latest version -->
+                <configuration>
+                    <failBuildOnCVSS>7</failBuildOnCVSS> <!-- Fail build on vulnerabilities with CVSS >= 7 -->
+                    <formats>
+                        <format>HTML</format>
+                        <format>JSON</format>
+                    </formats>
+                    <outputDirectory>target/dependency-check-report</outputDirectory>
                 </configuration>
             </plugin>
         </plugins>

@@ -75,7 +75,7 @@ public class ShinyProxyClient {
 
     public boolean stopProxy(String proxyId) {
         Request request = new Request.Builder()
-                .put(RequestBody.create("{\"desiredState\":\"Stopping\"}", JSON))
+                .put(RequestBody.create(MediaType.parse("application/json"), "{\"desiredState\":\"Stopping\"}"))
                 .url(baseUrl + "/api/" + proxyId + "/status")
                 .build();
 

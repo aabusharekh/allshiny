@@ -35,3 +35,12 @@ The build will result in a single `.jar` file that is made available in the `tar
 https://containerproxy.io (in progress)
 
 ASHRAF CHANGES
+
+docker run -it ghcr.io/google/osv-scanner -h
+
+docker run -it -v ${PWD}:/src ghcr.io/google/osv-scanner -L /src/go.mod
+
+docker run -it -v ${PWD}:/src ghcr.io/google/osv-scanner -r /src/
+
+
+
